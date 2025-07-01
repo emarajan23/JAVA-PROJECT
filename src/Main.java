@@ -1,11 +1,22 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import com.inventory.db.DBConnection;
+import com.inventory.view.MainMenu;
+import java.sql.Connection;
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome kannan raja!");
 
 
+        try{
+            Connection conn= DBConnection.getInstance();
+            System.out.println("DB CONNECT ESTABLISHED");
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println(" WELCOME TO INVENTORY MANAGEMENT SYSTEM");
+
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.show();
     }
 }
