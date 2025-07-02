@@ -11,9 +11,10 @@ public class AuthCredentialTable {
         Statement stmt=null;
 
         String query = "CREATE TABLE IF NOT EXISTS auth_credential (" +
-                "user_id INTEGER PRIMARY KEY, " +
+                "auth_id SERIAL PRIMARY KEY, " +
+                "user_id INTEGER NOT NULL, " +
                 "username VARCHAR UNIQUE NOT NULL, " +
-                "password_hash TEXT NOT NULL, " +
+                "password TEXT NOT NULL, " +
                 "FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE" +
                 ");";
 

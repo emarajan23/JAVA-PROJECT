@@ -1,9 +1,14 @@
 package com.inventory.view;
 
 
+import com.inventory.model.UserRole;
+
 import java.util.Scanner;
 
 public class MainMenu {
+
+    UserRegistrationView view=new UserRegistrationView();
+    private final SupplierLoginView loginView = new SupplierLoginView();
 
     private Scanner scan = new Scanner(System.in);
 
@@ -18,7 +23,7 @@ public class MainMenu {
             System.out.print("Enter your choice: ");
 
             int choice = scan.nextInt();
-            scan.nextLine(); // consume newline
+            scan.nextLine();
 
             switch (choice) {
                 case 1:
@@ -31,13 +36,38 @@ public class MainMenu {
                     // ProductionManagerView.login();
                     break;
                 case 4:
-                    // SupplierView.registerOrLogin();
+                    handleSupplierMenu();
                     break;
                 case 5:
                     System.out.println("Exiting. Thank you!");
                     return;
                 default:
-                    System.out.println("❌ Invalid choice. Try again.");
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+
+    private void handleSupplierMenu() {
+        while (true) {
+            System.out.println("\n--- Supplier Menu ---");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Back");
+            System.out.print("Enter your choice: ");
+            int supplierChoice = scan.nextInt();
+            scan.nextLine();
+
+            switch (supplierChoice) {
+                case 1:
+                    view.registerUserByRole(UserRole.SUPPLIER);
+                    break;
+                case 2:
+                    loginView.login();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }
