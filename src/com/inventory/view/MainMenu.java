@@ -1,25 +1,22 @@
 package com.inventory.view;
 
-
 import com.inventory.model.UserRole;
+import com.inventory.model.Users;
 
 import java.util.Scanner;
 
 public class MainMenu {
 
-    UserRegistrationView view=new UserRegistrationView();
-    private final SupplierLoginView loginView = new SupplierLoginView();
-
-    private Scanner scan = new Scanner(System.in);
+    private final Scanner scan = new Scanner(System.in);
+    private final UserRegistrationView registrationView = new UserRegistrationView();
+    private final UserLoginView loginView = new UserLoginView();
 
     public void show() {
         while (true) {
-            System.out.println("\nSelect your role to login:");
-            System.out.println("1. Admin");
-            System.out.println("2. Inventory Manager");
-            System.out.println("3. Production Manager");
-            System.out.println("4. Supplier");
-            System.out.println("5. Exit");
+            System.out.println("\n Main Menu");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scan.nextInt();
@@ -27,44 +24,43 @@ public class MainMenu {
 
             switch (choice) {
                 case 1:
-                    // AdminView.login();
+                    showRegistrationMenu();
                     break;
                 case 2:
-                    // InventoryManagerView.login();
+                    showLoginMenu();
                     break;
                 case 3:
-                    // ProductionManagerView.login();
-                    break;
-                case 4:
-                    handleSupplierMenu();
-                    break;
-                case 5:
-                    System.out.println("Exiting. Thank you!");
+                    System.out.println(" Exiting. Thank you!");
                     return;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println(" Invalid choice. Try again.");
             }
         }
     }
 
-    private void handleSupplierMenu() {
+    private void showRegistrationMenu() {
         while (true) {
-            System.out.println("\n--- Supplier Menu ---");
-            System.out.println("1. Register");
-            System.out.println("2. Login");
-            System.out.println("3. Back");
+            System.out.println("\n Register As:");
+            System.out.println("1. Supplier");
+            System.out.println("2. Inventory Manager");
+            System.out.println("3. Production Manager");
+            System.out.println("4. Back");
             System.out.print("Enter your choice: ");
-            int supplierChoice = scan.nextInt();
+
+            int regChoice = scan.nextInt();
             scan.nextLine();
 
-            switch (supplierChoice) {
+            switch (regChoice) {
                 case 1:
-                    view.registerUserByRole(UserRole.SUPPLIER);
+                    registrationView.registerUserByRole(UserRole.SUPPLIER);
                     break;
                 case 2:
-                    loginView.login();
+                    registrationView.registerUserByRole(UserRole.INVENTORY_MANAGER);
                     break;
                 case 3:
+                    registrationView.registerUserByRole(UserRole.PRODUCTION_MANAGER);
+                    break;
+                case 4:
                     return;
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -72,4 +68,45 @@ public class MainMenu {
         }
     }
 
+    private void showLoginMenu() {
+        while (true) {
+            System.out.println("\n Login As:");
+            System.out.println("1. Supplier");
+            System.out.println("2. Inventory Manager");
+            System.out.println("3. Production Manager");
+            System.out.println("4. Back");
+            System.out.print("Enter your choice: ");
+
+            int loginChoice = scan.nextInt();
+            scan.nextLine();
+
+            switch (loginChoice) {
+                case 1: {
+                    Users supplier = loginView.loginByRole(UserRole.SUPPLIER);
+                    if (supplier != null) {
+                        new SupplierDashboardView().show(supplier);
+                    }
+                    break;
+                }
+                case 2: {
+                    Users manager = loginView.loginByRole(UserRole.INVENTORY_MANAGER);
+                    if (manager != null) {
+                        new InventoryManagerDashboard().show(manager);
+                    }
+                    break;
+                }
+                case 3: {
+                    Users pm = loginView.loginByRole(UserRole.PRODUCTION_MANAGER);
+                    if (pm != null) {
+                        new ProductionManagerDashboardView().show(pm);
+                    }
+                    break;
+                }
+                case 4:
+                    return;
+                default:
+                    System.out.println(" Invalid choice. Try again.");
+            }
+        }
+    }
 }

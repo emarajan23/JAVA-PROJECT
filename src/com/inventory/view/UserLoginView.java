@@ -1,7 +1,5 @@
 package com.inventory.view;
 
-
-import java.util.Scanner;
 import com.inventory.exception.InvalidInputException;
 import com.inventory.exception.LoginFailedException;
 import com.inventory.model.UserRole;
@@ -10,14 +8,16 @@ import com.inventory.service.UserService;
 import com.inventory.service.impl.UserServiceImpl;
 import com.inventory.validation.InputValidator;
 
-public class SupplierLoginView {
+import java.util.Scanner;
+
+public class UserLoginView {
 
     private final UserService userService = new UserServiceImpl();
 
-    public void login() {
+    public Users loginByRole(UserRole role) {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Supplier Login");
+        System.out.println("\n " + role + " Login");
 
         String username;
         while (true) {
@@ -46,44 +46,17 @@ public class SupplierLoginView {
         try {
             Users user = userService.login(username, password);
 
-            if (user.getRole() != UserRole.SUPPLIER) {
-                System.out.println("Access denied. You are not a supplier.");
-                return;
+            if (user.getRole() != role) {
+                System.out.println("Access denied. You are not a " + role);
+                return null;
             }
 
             System.out.println("Login successful. Welcome " + user.getName());
-            handleSupplierActions(user);
-
-
+            return user;
 
         } catch (LoginFailedException | InvalidInputException e) {
-            System.out.println( e.getMessage());
-        }
-    }
-
-    private void handleSupplierActions(Users supplier) {
-        Scanner sc = new Scanner(System.in);
-        AddFabricView addFabricView = new AddFabricView();
-
-        while (true) {
-            System.out.println("\n Supplier Dashboard");
-            System.out.println("1. Add Fabric");
-            System.out.println("2. Logout");
-            System.out.print("Enter choice: ");
-
-            int choice = sc.nextInt();
-            sc.nextLine();
-
-            switch (choice) {
-                case 1:
-                    addFabricView.addFabric(supplier);
-                    break;
-                case 2:
-                    System.out.println("Logged out.");
-                    return;
-                default:
-                    System.out.println("Invalid option. Try again.");
-            }
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

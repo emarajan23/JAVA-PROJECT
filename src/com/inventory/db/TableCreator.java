@@ -12,6 +12,7 @@ public class TableCreator {
              UserTable.create(con);
              AuthCredentialTable.create(con);
              FabricTable.create(con);
+             InventoryTable.create(con);
 
 
 
