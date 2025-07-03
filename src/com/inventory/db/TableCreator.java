@@ -9,10 +9,10 @@ public class TableCreator {
         try {
              con = DBConnection.getInstance();
 
-             UserTable.create(con);
+             NewUserTable.create(con);
              AuthCredentialTable.create(con);
              FabricTable.create(con);
-             InventoryTable.create(con);
+//             InventoryTable.create(con);
 
 
 

@@ -15,22 +15,22 @@ public class FabricTable {
                 "type VARCHAR(50) NOT NULL, " +
                 "color VARCHAR(50), " +
                 "gsm INT, " +
-                "rolls INT, " +
-                "price_per_roll NUMERIC(10,2), " +
-                "supplier_id INT REFERENCES users(user_id) ON DELETE CASCADE" +
+                "price NUMERIC(10,2), " +
+                "supplier_id INT NOT NULL, " +
+                "FOREIGN KEY (supplier_id) REFERENCES users(user_id)" +
                 ");";
 
         try {
             stmt = con.createStatement();
             stmt.execute(sql);
-            System.out.println(" fabric table created successfully.");
+            System.out.println("fabric table created successfully.");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error creating fabric table: " + e.getMessage());
         } finally {
             try {
                 if (stmt != null) stmt.close();
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                System.out.println("Error closing statement: " + ex.getMessage());
             }
         }
     }

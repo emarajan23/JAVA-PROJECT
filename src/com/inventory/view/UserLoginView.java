@@ -1,62 +1,34 @@
 package com.inventory.view;
 
-import com.inventory.exception.InvalidInputException;
-import com.inventory.exception.LoginFailedException;
-import com.inventory.model.UserRole;
-import com.inventory.model.Users;
-import com.inventory.service.UserService;
-import com.inventory.service.impl.UserServiceImpl;
-import com.inventory.validation.InputValidator;
-
 import java.util.Scanner;
 
 public class UserLoginView {
 
-    private final UserService userService = new UserServiceImpl();
+    private final Scanner scanner = new Scanner(System.in);
 
-    public Users loginByRole(UserRole role) {
-        Scanner scan = new Scanner(System.in);
+    public String getUsernameInput() {
+        System.out.print("Enter Username: ");
+        return scanner.nextLine();
+    }
 
-        System.out.println("\n " + role + " Login");
+    public String getPasswordInput() {
+        System.out.print("Enter Password: ");
+        return scanner.nextLine();
+    }
 
-        String username;
-        while (true) {
-            System.out.print("Enter Username: ");
-            username = scan.nextLine();
-            try {
-                InputValidator.validateUsername(username);
-                break;
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public void showLoginTitle(String role) {
+        System.out.println("\n" + role + " Login");
+    }
 
-        String password;
-        while (true) {
-            System.out.print("Enter Password: ");
-            password = scan.nextLine();
-            try {
-                InputValidator.validatePassword(password);
-                break;
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public void showError(String message) {
+        System.out.println(message);
+    }
 
-        try {
-            Users user = userService.login(username, password);
+    public void showSuccess(String name) {
+        System.out.println("Login successful. Welcome " + name);
+    }
 
-            if (user.getRole() != role) {
-                System.out.println("Access denied. You are not a " + role);
-                return null;
-            }
-
-            System.out.println("Login successful. Welcome " + user.getName());
-            return user;
-
-        } catch (LoginFailedException | InvalidInputException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public void showAccessDenied(String role) {
+        System.out.println("Access denied. You are not a " + role);
     }
 }

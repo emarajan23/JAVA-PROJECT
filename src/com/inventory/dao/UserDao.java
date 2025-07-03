@@ -1,7 +1,8 @@
 package com.inventory.dao;
 
-import com.inventory.model.Users;
+import com.inventory.model.NewUsers;
+
 
 public interface UserDao {
-    int saveUser(Users user);
+    int saveUser(NewUsers user);
 }

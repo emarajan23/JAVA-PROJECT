@@ -2,7 +2,7 @@ package com.inventory.dao.impl;
 
 import com.inventory.dao.UserDao;
 import com.inventory.db.DBConnection;
-import com.inventory.model.Users;
+import com.inventory.model.NewUsers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 public class UserDaoImpl implements UserDao {
 
     @Override
-    public int saveUser(Users user) {
+    public int saveUser(NewUsers user) {
         int userId = -1;
         Connection con = null;
         PreparedStatement ps = null;
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
                 userId = rs.getInt("user_id");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // You may want to rethrow this or log it
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -44,5 +44,4 @@ public class UserDaoImpl implements UserDao {
 
         return userId;
     }
-
 }

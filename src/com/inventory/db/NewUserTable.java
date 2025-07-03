@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserTable {
+public class NewUserTable {
 
     public static void create(Connection con){
 

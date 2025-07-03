@@ -1,7 +1,7 @@
 package com.inventory.model;
 
-public class Fabric {
-
+public class FabricEntity {
+    private int fabricId;
     private String name;
     private String type;
     private String color;
@@ -10,8 +10,8 @@ public class Fabric {
 
     private Users supplier;
 
-
-    public Fabric(String name, String type, String color, int gsm, double price, Users supplier) {
+    public FabricEntity(int fabricId, String name, String type, String color, int gsm, double price, Users supplier) {
+        this.fabricId = fabricId;
         this.name = name;
         this.type = type;
         this.color = color;
@@ -20,6 +20,9 @@ public class Fabric {
         this.supplier = supplier;
     }
 
+    public int getFabricId() {
+        return fabricId;
+    }
 
     public String getName() {
         return name;
@@ -45,11 +48,11 @@ public class Fabric {
         return supplier;
     }
 
-
     @Override
     public String toString() {
-        return "Fabric{" +
-                "name='" + name + '\'' +
+        return "FabricEntity{" +
+                "fabricId=" + fabricId +
+                ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", color='" + color + '\'' +
                 ", gsm=" + gsm +
@@ -57,5 +60,4 @@ public class Fabric {
                 ", supplier=" + (supplier != null ? supplier.getName() : "null") +
                 '}';
     }
-
 }

@@ -8,15 +8,15 @@ import com.inventory.service.FabricService;
 import java.util.List;
 
 public class FabricServiceImpl implements FabricService {
-    private FabricDao fabricDao = new FabricDaoImpl();
+    private  FabricDao fabricDao = new FabricDaoImpl();
 
     @Override
     public void addFabric(Fabric fabric) {
         fabricDao.saveFabric(fabric);
     }
 
-    @Override
-    public List<Fabric> getAllFabrics() {
-        return fabricDao.getAllFabrics();
-    }
+//    @Override
+//    public List<Fabric> getAllFabrics() {
+//        return fabricDao.getAllFabrics();
+//    }
 }

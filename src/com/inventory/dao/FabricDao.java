@@ -1,9 +1,11 @@
 package com.inventory.dao;
 
 import com.inventory.model.Fabric;
+import com.inventory.model.FabricEntity;
+
 import java.util.List;
 
 public interface FabricDao {
     void saveFabric(Fabric fabric);
-    List<Fabric> getAllFabrics();
+    List<FabricEntity> getAllFabrics();
 }
