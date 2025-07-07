@@ -1,9 +1,13 @@
 package com.inventory.db;
 
+import com.inventory.model.ProductionRequest;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class TableCreator {
+
+
     public static void createAllTables(){
         Connection con=null;
         try {
@@ -12,7 +16,9 @@ public class TableCreator {
              NewUserTable.create(con);
              AuthCredentialTable.create(con);
              FabricTable.create(con);
-//             InventoryTable.create(con);
+             PurchaseTable.create(con);
+             InventoryTable.create(con);
+             ProductionRequestTable.create(con);
 
 
 

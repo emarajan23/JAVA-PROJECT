@@ -1,7 +1,9 @@
+package com.inventory;
+
 import com.inventory.db.DBConnection;
-import com.inventory.view.MainMenu;
 import java.sql.Connection;
 import com.inventory.db.TableCreator;
+import com.inventory.view.MainMenu;
 
 public class Main {
 

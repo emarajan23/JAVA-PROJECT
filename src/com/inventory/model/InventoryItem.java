@@ -1,51 +1,46 @@
-//package com.inventory.model;
-//
-//public class InventoryItem {
-//    private int inventoryId;
-//    private int fabricId;
-//    private int quantity;
-//    private String fabricName;
-//    private String fabricType;
-//
-//
-//
-//    public int getInventoryId() {
-//        return inventoryId;
-//    }
-//
-//    public void setInventoryId(int inventoryId) {
-//        this.inventoryId = inventoryId;
-//    }
-//
-//    public int getFabricId() {
-//        return fabricId;
-//    }
-//
-//    public void setFabricId(int fabricId) {
-//        this.fabricId = fabricId;
-//    }
-//
-//    public int getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
-//
-//    public String getFabricName() {
-//        return fabricName;
-//    }
-//
-//    public void setFabricName(String fabricName) {
-//        this.fabricName = fabricName;
-//    }
-//
-//    public String getFabricType() {
-//        return fabricType;
-//    }
-//
-//    public void setFabricType(String fabricType) {
-//        this.fabricType = fabricType;
-//    }
-//}
+package com.inventory.model;
+
+public class InventoryItem {
+
+    private int inventoryId;
+    private FabricEntity fabric;
+    private int quantity;
+
+
+    public InventoryItem(int inventoryId, FabricEntity fabric, int quantity) {
+        this.inventoryId = inventoryId;
+        this.fabric = fabric;
+        this.quantity = quantity;
+    }
+
+    public int getInventoryId() {
+        return inventoryId;
+    }
+
+    public FabricEntity getFabric() {
+        return fabric;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Inventory ID: %d | Fabric ID: %d | Name: %s | Type: %s | Color: %s | GSM: %d | Rolls: %d | Supplier: %s",
+                inventoryId,
+                fabric.getFabricId(),
+                fabric.getName(),
+                fabric.getType(),
+                fabric.getColor(),
+                fabric.getGsm(),
+                quantity,
+                fabric.getSupplier() != null ? fabric.getSupplier().getName() : "N/A"
+        );
+    }
+}

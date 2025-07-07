@@ -17,7 +17,7 @@ public class MainMenu {
 
     public void show() {
         while (true) {
-            System.out.println("\n=== Main Menu ===");
+            System.out.println("\n=== com.inventory.Main Menu ===");
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Exit");
@@ -98,7 +98,7 @@ public class MainMenu {
                 case 3:
                     Users pm = loginController.handleLogin(UserRole.PRODUCTION_MANAGER);
                     if (pm != null) {
-//                        new ProductionManagerDashboardView().show(pm);
+                        new ProductionManagerDashboardView().show(pm);
                     }
                     break;
                 case 4:

@@ -20,6 +20,16 @@ public class FabricEntity {
         this.supplier = supplier;
     }
 
+    public FabricEntity(int fabricId, String name, String type, String color, int gsm, double price) {
+        this.fabricId = fabricId;
+        this.name = name;
+        this.type = type;
+        this.color = color;
+        this.gsm = gsm;
+        this.price = price;
+        this.supplier = null;
+    }
+
     public int getFabricId() {
         return fabricId;
     }

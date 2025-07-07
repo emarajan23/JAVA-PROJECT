@@ -24,11 +24,15 @@ public class FabricTable {
             stmt = con.createStatement();
             stmt.execute(sql);
             System.out.println("fabric table created successfully.");
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Error creating fabric table: " + e.getMessage());
-        } finally {
+        }
+        finally {
             try {
-                if (stmt != null) stmt.close();
+                if (stmt != null) {
+                    stmt.close();
+                }
             } catch (SQLException ex) {
                 System.out.println("Error closing statement: " + ex.getMessage());
             }
