@@ -24,7 +24,6 @@ public class FabricController {
 
             try {
                 fabricService.addFabric(fabric);
-                System.out.println("Fabric saved successfully.");
             } catch (DuplicateFabricException e) {
                 System.out.println(e.getMessage());
             }
