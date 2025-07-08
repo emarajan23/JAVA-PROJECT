@@ -1,4 +1,4 @@
-package com.inventory.db;
+package com.inventory.repository;
 
 import java.sql.Connection;
 import java.sql.Statement;

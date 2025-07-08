@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface FabricService {
     void addFabric(Fabric fabric);
-//    List<Fabric> getAllFabrics();
+
 }

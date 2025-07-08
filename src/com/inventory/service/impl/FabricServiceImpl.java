@@ -19,8 +19,4 @@ public class FabricServiceImpl implements FabricService {
         fabricDao.saveFabric(fabric);
     }
 
-//    @Override
-//    public List<Fabric> getAllFabrics() {
-//        return fabricDao.getAllFabrics();
-//    }
 }

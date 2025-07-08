@@ -2,7 +2,7 @@ package com.inventory.dao.impl;
 
 import com.inventory.dao.FabricDao;
 import com.inventory.model.Fabric;
-import com.inventory.db.DBConnection;
+import com.inventory.repository.DBConnection;
 import com.inventory.model.FabricEntity;
 import com.inventory.model.UserRole;
 import com.inventory.model.UserEntity;

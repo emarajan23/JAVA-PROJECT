@@ -1,7 +1,7 @@
 package com.inventory.dao.impl;
 
 import com.inventory.dao.UserDao;
-import com.inventory.db.DBConnection;
+import com.inventory.repository.DBConnection;
 import com.inventory.model.User;
 
 import java.sql.Connection;

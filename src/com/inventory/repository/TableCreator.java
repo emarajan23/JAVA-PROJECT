@@ -1,6 +1,4 @@
-package com.inventory.db;
-
-import com.inventory.model.ProductionRequest;
+package com.inventory.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;

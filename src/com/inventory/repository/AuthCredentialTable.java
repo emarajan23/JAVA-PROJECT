@@ -1,26 +1,27 @@
-package com.inventory.db;
+package com.inventory.repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class NewUserTable {
+public class AuthCredentialTable {
 
     public static void create(Connection con){
 
         Statement stmt=null;
 
-        String query = "CREATE TABLE IF NOT EXISTS USERS (" +
-                "user_id SERIAL PRIMARY KEY," +
-                "name VARCHAR," +
-                "email VARCHAR UNIQUE NOT NULL," +
-                "contact_number VARCHAR," +
-                "role VARCHAR NOT NULL CHECK(role IN('ADMIN','SUPPLIER','INVENTORY_MANAGER','PRODUCTION_MANAGER')))";
+        String query = "CREATE TABLE IF NOT EXISTS auth_credential (" +
+                "auth_id SERIAL PRIMARY KEY, " +
+                "user_id INTEGER NOT NULL, " +
+                "username VARCHAR UNIQUE NOT NULL, " +
+                "password TEXT NOT NULL, " +
+                "FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE" +
+                ");";
 
         try{
             stmt=con.createStatement();
             stmt.executeUpdate(query);
-            System.out.println("user table created");
+            System.out.println("Authentication table created");
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -37,8 +38,5 @@ public class NewUserTable {
 
             }
         }
-
-
     }
-
 }

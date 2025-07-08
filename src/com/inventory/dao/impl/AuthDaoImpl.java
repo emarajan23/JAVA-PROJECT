@@ -1,7 +1,7 @@
 package com.inventory.dao.impl;
 
 import com.inventory.dao.AuthDao;
-import com.inventory.db.DBConnection;
+import com.inventory.repository.DBConnection;
 import com.inventory.model.UserRole;
 import com.inventory.model.UserEntity;
 
