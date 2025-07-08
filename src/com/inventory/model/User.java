@@ -1,6 +1,6 @@
 package com.inventory.model;
 
-public class NewUsers {
+public class User {
 
     private String name;
     private String email;
@@ -8,7 +8,7 @@ public class NewUsers {
     private UserRole role;
 
 
-   public NewUsers(String name, String email, String contactNumber, UserRole role){
+   public User(String name, String email, String contactNumber, UserRole role){
         this.name=name;
         this.email=email;
         this.contactNumber=contactNumber;

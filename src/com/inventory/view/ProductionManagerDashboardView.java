@@ -1,11 +1,10 @@
 package com.inventory.view;
 
-import com.inventory.controller.InventoryManagerController;
 import com.inventory.controller.ProductionRequestController;
 import com.inventory.dao.InventoryDao;
 import com.inventory.dao.impl.InventoryDaoImpl;
 import com.inventory.model.InventoryItem;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +14,7 @@ public class ProductionManagerDashboardView {
     private final InventoryDao inventoryDao = new InventoryDaoImpl();
     private final ProductionRequestController requestController = new ProductionRequestController();
 
-    public void show(Users manager) {
+    public void show(UserEntity manager) {
         Scanner sc = new Scanner(System.in);
 
         while (true) {

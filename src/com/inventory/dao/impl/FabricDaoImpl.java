@@ -5,7 +5,7 @@ import com.inventory.model.Fabric;
 import com.inventory.db.DBConnection;
 import com.inventory.model.FabricEntity;
 import com.inventory.model.UserRole;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class FabricDaoImpl implements FabricDao {
                 double price = rs.getDouble("price");
 
                 // Construct Users object using constructor
-                Users supplier = new Users(
+                UserEntity supplier = new UserEntity(
                         rs.getInt("user_id"),
                         rs.getString("supplier_name"),
                         rs.getString("email"),

@@ -5,7 +5,7 @@ import com.inventory.controller.SupplierMenuController;
 import com.inventory.controller.UserLoginController;
 import com.inventory.controller.UserRegistrationController;
 import com.inventory.model.UserRole;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 
 import java.util.Scanner;
 
@@ -83,20 +83,20 @@ public class MainMenu {
 
             switch (loginChoice) {
                 case 1:
-                    Users supplier = loginController.handleLogin(UserRole.SUPPLIER);
+                    UserEntity supplier = loginController.handleLogin(UserRole.SUPPLIER);
 
                     if (supplier != null) {
                         new SupplierMenuController().showMenu(supplier);
                     }
                     break;
                 case 2:
-                    Users manager = loginController.handleLogin(UserRole.INVENTORY_MANAGER);
+                    UserEntity manager = loginController.handleLogin(UserRole.INVENTORY_MANAGER);
                     if (manager != null) {
                         new InventoryManagerController().handleMenu();
                     }
                     break;
                 case 3:
-                    Users pm = loginController.handleLogin(UserRole.PRODUCTION_MANAGER);
+                    UserEntity pm = loginController.handleLogin(UserRole.PRODUCTION_MANAGER);
                     if (pm != null) {
                         new ProductionManagerDashboardView().show(pm);
                     }

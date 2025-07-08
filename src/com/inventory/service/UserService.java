@@ -1,12 +1,12 @@
 package com.inventory.service;
 
-import com.inventory.model.NewUsers;
-import com.inventory.model.Users;
+import com.inventory.model.User;
+import com.inventory.model.UserEntity;
 
 public interface UserService {
 
-    void registerUser(NewUsers user, String username, String password);
+    void registerUser(User user, String username, String password);
 
 
-    Users login(String username, String password);
+    UserEntity login(String username, String password);
 }

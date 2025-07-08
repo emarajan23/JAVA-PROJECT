@@ -3,7 +3,7 @@ package com.inventory.dao.impl;
 import com.inventory.dao.AuthDao;
 import com.inventory.db.DBConnection;
 import com.inventory.model.UserRole;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -69,11 +69,11 @@ public class AuthDaoImpl implements AuthDao {
     }
 
     @Override
-    public Users fetchUserByCredentials(String username, String password) {
+    public UserEntity fetchUserByCredentials(String username, String password) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Users user = null;
+        UserEntity user = null;
 
         try {
             con = DBConnection.getInstance();
@@ -89,7 +89,7 @@ public class AuthDaoImpl implements AuthDao {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                user = new Users(
+                user = new UserEntity(
                         rs.getInt("user_id"),
                         rs.getString("name"),
                         rs.getString("email"),

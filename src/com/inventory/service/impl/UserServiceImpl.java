@@ -7,8 +7,8 @@ import com.inventory.dao.impl.UserDaoImpl;
 import com.inventory.exception.InvalidInputException;
 import com.inventory.exception.LoginFailedException;
 import com.inventory.exception.UsernameAlreadyExistsException;
-import com.inventory.model.NewUsers;
-import com.inventory.model.Users;
+import com.inventory.model.User;
+import com.inventory.model.UserEntity;
 import com.inventory.service.UserService;
 
 public class UserServiceImpl implements UserService {
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     private final AuthDao authDao = new AuthDaoImpl();
 
     @Override
-    public void registerUser(NewUsers newUser, String username, String password) {
+    public void registerUser(User newUser, String username, String password) {
         if (authDao.isUsernameExists(username)) {
             throw new UsernameAlreadyExistsException("Username already taken.");
         }
@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users login(String username, String password) {
+    public UserEntity login(String username, String password) {
         if (username == null || password == null || username.isBlank() || password.isBlank()) {
             throw new InvalidInputException("Username and password cannot be empty.");
         }
 
-        Users user = authDao.fetchUserByCredentials(username, password);
+        UserEntity user = authDao.fetchUserByCredentials(username, password);
         if (user == null) {
             throw new LoginFailedException("Invalid username or password.");
         }

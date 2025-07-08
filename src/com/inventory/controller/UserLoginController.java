@@ -3,7 +3,7 @@ package com.inventory.controller;
 import com.inventory.exception.InvalidInputException;
 import com.inventory.exception.LoginFailedException;
 import com.inventory.model.UserRole;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 import com.inventory.service.UserService;
 import com.inventory.service.impl.UserServiceImpl;
 import com.inventory.validation.InputValidator;
@@ -14,7 +14,7 @@ public class UserLoginController {
     private final UserLoginView view = new UserLoginView();
     private final UserService userService = new UserServiceImpl();
 
-    public Users handleLogin(UserRole role) {
+    public UserEntity handleLogin(UserRole role) {
         view.showLoginTitle(role.name());
 
         String username;
@@ -40,7 +40,7 @@ public class UserLoginController {
         }
 
         try {
-            Users user = userService.login(username, password);
+            UserEntity user = userService.login(username, password);
 
             if (user.getRole() != role) {
                 view.showAccessDenied(role.name());

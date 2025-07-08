@@ -8,9 +8,9 @@ public class FabricEntity {
     private int gsm;
     private double price;
 
-    private Users supplier;
+    private UserEntity supplier;
 
-    public FabricEntity(int fabricId, String name, String type, String color, int gsm, double price, Users supplier) {
+    public FabricEntity(int fabricId, String name, String type, String color, int gsm, double price, UserEntity supplier) {
         this.fabricId = fabricId;
         this.name = name;
         this.type = type;
@@ -54,7 +54,7 @@ public class FabricEntity {
         return price;
     }
 
-    public Users getSupplier() {
+    public UserEntity getSupplier() {
         return supplier;
     }
 

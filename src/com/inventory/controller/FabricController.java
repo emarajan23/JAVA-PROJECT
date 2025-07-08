@@ -1,7 +1,7 @@
 package com.inventory.controller;
 
 import com.inventory.model.Fabric;
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 import com.inventory.service.FabricService;
 import com.inventory.service.impl.FabricServiceImpl;
 import com.inventory.view.GetFabricDetailsView;
@@ -11,7 +11,7 @@ public class FabricController {
     GetFabricDetailsView view=new GetFabricDetailsView();
     private final FabricService fabricService = new FabricServiceImpl();
 
-    public void handleFabric(Users supplier){
+    public void handleFabric(UserEntity supplier){
         String name = view.getName().toLowerCase();
         String type = view.getType().toLowerCase();
         String color = view.getColor().toLowerCase();

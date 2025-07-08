@@ -2,7 +2,7 @@ package com.inventory.controller;
 
 import com.inventory.exception.InvalidInputException;
 import com.inventory.exception.UsernameAlreadyExistsException;
-import com.inventory.model.NewUsers;
+import com.inventory.model.User;
 import com.inventory.model.UserRole;
 import com.inventory.service.UserService;
 import com.inventory.service.impl.UserServiceImpl;
@@ -70,7 +70,7 @@ public class UserRegistrationController {
             }
         }
 
-        NewUsers newUser = new NewUsers(name, email, contact, role);
+        User newUser = new User(name, email, contact, role);
 
         try {
             userService.registerUser(newUser, username, password);

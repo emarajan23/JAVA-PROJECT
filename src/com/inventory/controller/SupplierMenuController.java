@@ -1,6 +1,6 @@
 package com.inventory.controller;
 
-import com.inventory.model.Users;
+import com.inventory.model.UserEntity;
 import com.inventory.view.SupplierMenuView;
 
 public class SupplierMenuController {
@@ -8,7 +8,7 @@ public class SupplierMenuController {
     SupplierMenuView view =new SupplierMenuView();
     FabricController fabricController=new FabricController();
 
-    public void showMenu(Users supplier) {
+    public void showMenu(UserEntity supplier) {
         while (true) {
             view.showTitle();
             int choice = view.getUserChoice();

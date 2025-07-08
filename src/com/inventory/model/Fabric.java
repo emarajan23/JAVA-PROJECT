@@ -8,10 +8,10 @@ public class Fabric {
     private int gsm;
     private double price;
 
-    private Users supplier;
+    private UserEntity supplier;
 
 
-    public Fabric(String name, String type, String color, int gsm, double price, Users supplier) {
+    public Fabric(String name, String type, String color, int gsm, double price, UserEntity supplier) {
         this.name = name;
         this.type = type;
         this.color = color;
@@ -41,7 +41,7 @@ public class Fabric {
         return price;
     }
 
-    public Users getSupplier() {
+    public UserEntity getSupplier() {
         return supplier;
     }
 
