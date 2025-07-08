@@ -105,4 +105,39 @@ public class FabricDaoImpl implements FabricDao {
 
         return fabricList;
     }
+
+    @Override
+    public boolean fabricExists(int supplierId, String name, String type, String color) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.getInstance();
+            String query = "SELECT COUNT(*) FROM fabric WHERE supplier_id = ? AND name = ? AND type = ? AND color = ?";
+            stmt = con.prepareStatement(query);
+            stmt.setInt(1, supplierId);
+            stmt.setString(2, name);
+            stmt.setString(3, type);
+            stmt.setString(4, color);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
 }

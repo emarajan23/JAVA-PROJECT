@@ -34,4 +34,9 @@ public class GetFabricDetailsView {
         scan.nextLine();
         return price;
     }
+    public boolean askToContinue() {
+        System.out.print("Do you want to add another fabric? (yes/no): ");
+        String input = scan.nextLine();
+        return input.equalsIgnoreCase("yes");
+    }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface FabricDao {
     void saveFabric(Fabric fabric);
     List<FabricEntity> getAllFabrics();
+    boolean fabricExists(int supplierId, String name, String type, String color);
 }
