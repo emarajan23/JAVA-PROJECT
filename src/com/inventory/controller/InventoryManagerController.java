@@ -1,9 +1,10 @@
 package com.inventory.controller;
 
-import com.inventory.dao.InventoryDao;
-import com.inventory.dao.impl.InventoryDaoImpl;
+
 import com.inventory.model.InventoryItem;
 import com.inventory.model.ProductionRequest;
+import com.inventory.service.InventoryService;
+import com.inventory.service.impl.InventoryServiceImpl;
 import com.inventory.view.InventoryManagerMenu;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class InventoryManagerController {
 
     InventoryManagerMenu menu = new InventoryManagerMenu();
     PurchaseController purchase = new PurchaseController();
-    InventoryDao inventoryDao = new InventoryDaoImpl();
-    private final ProductionRequestController requestController = new ProductionRequestController();
+    InventoryService inventoryService = new InventoryServiceImpl();
+    ProductionRequestController requestController = new ProductionRequestController();
 
     public void handleMenu() {
         while (true) {
@@ -43,7 +44,7 @@ public class InventoryManagerController {
     }
 
     private void showAllInventory() {
-        List<InventoryItem> inventory = inventoryDao.getAllInventory();
+        List<InventoryItem> inventory = inventoryService.getAllInventory();
 
         if (inventory.isEmpty()) {
             System.out.println("Inventory is empty.");
@@ -62,7 +63,8 @@ public class InventoryManagerController {
     }
 
     private void showLowInventory() {
-        List<InventoryItem> lowStock = inventoryDao.getLowInventoryItems();
+        List<InventoryItem> lowStock = inventoryService.getLowInventoryItems();
+
 
         if (lowStock.isEmpty()) {
             System.out.println("No low inventory items (All stocks are sufficient).");
@@ -84,7 +86,7 @@ public class InventoryManagerController {
         List<ProductionRequest> requests = requestController.getPendingRequests();
 
         if (requests.isEmpty()) {
-            System.out.println("📭 No pending requests.");
+            System.out.println(" No pending requests.");
             return;
         }
 

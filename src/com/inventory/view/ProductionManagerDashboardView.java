@@ -1,24 +1,24 @@
 package com.inventory.view;
 
 import com.inventory.controller.ProductionRequestController;
-import com.inventory.dao.InventoryDao;
-import com.inventory.dao.impl.InventoryDaoImpl;
 import com.inventory.model.InventoryItem;
 import com.inventory.model.UserEntity;
+import com.inventory.service.InventoryService;
+import com.inventory.service.impl.InventoryServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductionManagerDashboardView {
 
-    private final InventoryDao inventoryDao = new InventoryDaoImpl();
+    private final InventoryService inventoryService = new InventoryServiceImpl();
     private final ProductionRequestController requestController = new ProductionRequestController();
 
     public void show(UserEntity manager) {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n🏭 Production Manager Dashboard");
+            System.out.println("\nProduction Manager Dashboard");
             System.out.println("1. View Inventory");
             System.out.println("2. Request Fabric");
             System.out.println("3. Logout");
@@ -35,23 +35,23 @@ public class ProductionManagerDashboardView {
                     requestFabric();
                     break;
                 case 3:
-                    System.out.println("🔓 Logged out.");
+                    System.out.println("Logged out.");
                     return;
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println(" Invalid option. Try again.");
             }
         }
     }
 
     private void viewInventory() {
-        List<InventoryItem> inventoryList = inventoryDao.getAllInventory();
+        List<InventoryItem> inventoryList = inventoryService.getAllInventory();
 
         if (inventoryList.isEmpty()) {
-            System.out.println("📦 No inventory available.");
+            System.out.println("No inventory available.");
             return;
         }
 
-        System.out.println("\n📦 Available Inventory:");
+        System.out.println("\n Available Inventory:");
         for (InventoryItem item : inventoryList) {
             System.out.printf("Inventory ID: %d | Name: %s | Type: %s | Rolls: %d\n",
                     item.getInventoryId(),

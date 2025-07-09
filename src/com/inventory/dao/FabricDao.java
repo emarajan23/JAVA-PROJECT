@@ -9,4 +9,6 @@ public interface FabricDao {
     void saveFabric(Fabric fabric);
     List<FabricEntity> getAllFabrics();
     boolean fabricExists(int supplierId, String name, String type, String color);
+    List<FabricEntity> getFabricsBySupplierId(int supplierId);
+
 }

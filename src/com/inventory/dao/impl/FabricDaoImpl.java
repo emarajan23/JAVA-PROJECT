@@ -140,4 +140,57 @@ public class FabricDaoImpl implements FabricDao {
         return false;
     }
 
+    @Override
+    public List<FabricEntity> getFabricsBySupplierId(int supplierId) {
+        List<FabricEntity> fabricList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.getInstance();
+            String sql = "SELECT f.fabric_id, f.name, f.type, f.color, f.gsm, f.price, " +
+                    "u.user_id, u.name AS supplier_name, u.email, u.contact_number, u.role " +
+                    "FROM fabric f JOIN users u ON f.supplier_id = u.user_id " +
+                    "WHERE f.supplier_id = ?";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, supplierId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int fabricId = rs.getInt("fabric_id");
+                String name = rs.getString("name");
+                String type = rs.getString("type");
+                String color = rs.getString("color");
+                int gsm = rs.getInt("gsm");
+                double price = rs.getDouble("price");
+
+                UserEntity supplier = new UserEntity(
+                        rs.getInt("user_id"),
+                        rs.getString("supplier_name"),
+                        rs.getString("email"),
+                        rs.getString("contact_number"),
+                        UserRole.valueOf(rs.getString("role"))
+                );
+
+                FabricEntity fabric = new FabricEntity(fabricId, name, type, color, gsm, price, supplier);
+                fabricList.add(fabric);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return fabricList;
+    }
+
+
 }

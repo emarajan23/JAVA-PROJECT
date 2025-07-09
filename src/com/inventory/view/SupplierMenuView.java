@@ -14,7 +14,8 @@ public class SupplierMenuView {
 
     public int getUserChoice() {
         System.out.println("1. Add Fabric");
-        System.out.println("2. Logout");
+        System.out.println("2. View My Fabric");
+        System.out.println("3. Logout");
         System.out.print("Enter choice: ");
         return scan.nextInt();
     }
